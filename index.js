@@ -165,6 +165,17 @@ if(hexColor){
       domUpdatefn(hex2dicimal)
      // domUpdatefn(hexColor)
       colorDisplay.style.background = `#${hexColor}`
+
+      errorTost.style.opacity = 0;
+      errorTost.style.visibility = 'hidden';
+      errorTost.style.height = 0 ;
+   }else{
+      console.log('dont Work')
+      errorTost.style.opacity = 1;
+      errorTost.style.visibility = 'visible';
+      errorTost.style.height = '20px' ;
+      
+
    }
 }
   
