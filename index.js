@@ -39,8 +39,8 @@ var   tostMsg = null ;
 
          copyColorBtn.addEventListener('click' , function(){
             var check = checkedValueFromRedios(radioBtn)
-            if(check !== null){
-               console.log(check)
+            if(check === null){
+               throw new Error('We Dont Find Color')
             }
             if (tostMsg !== null) {
                tostMsg.remove();
@@ -49,14 +49,28 @@ var   tostMsg = null ;
          
 
 
-            if(check == 'hex'){
-               console.log('hum')
-               copyColorTost(`#${hexValue.value} copied`)
-               navigator.clipboard.writeText( `#${hexValue.value}`)
+           
+
+
+            if(isValidHex(hexValue.value) ){
+            
+
+               if(check == 'hex'){
+                  console.log('hum')
+                  copyColorTost(`#${hexValue.value} copied`)
+                  navigator.clipboard.writeText( `#${hexValue.value}`)
+               }else{
+                  console.log('yeah success')
+                  copyColorTost(`${colorExicute.value} copied`)
+                  navigator.clipboard.writeText ( colorExicute.value)
+               }
             }else{
-               console.log('yeah success')
-               copyColorTost(`${colorExicute.value} copied`)
-               navigator.clipboard.writeText ( colorExicute.value)
+               
+
+                  copyColorTost("Sorry We can't find color code")
+             
+           
+               
             }
          })
          
@@ -82,7 +96,7 @@ function copyColorTost(msg){
       tostMsg = null;
    });
 
-     
+  
    })
    
 }
@@ -158,8 +172,6 @@ if(hexColor){
 
 
    if(isValidHex(hexColor)){
-      console.log('Yeah This is working')
-
 
       var hex2dicimal = hexToDecimalColors(hexColor)
       domUpdatefn(hex2dicimal)
